@@ -1,41 +1,57 @@
 'use strict';
-function game (a)
-{
+/*функция проверки на число */
+let isNum = function(n){
 
-let b = 45;
+    return !isNaN(parseFloat(n))&& isFinite(n);
+};
 
-if (a==b)
-{
-alert('Поздравляю ты выиграл');
-}
-else{ if (a< b){
+/*функция рандомное число */
+let getRandomNum=function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min+1)) + min; //Максимум не включается, минимум включается
+  }
 
-alert('Загаданное число больше ');
-a= prompt('Попробуй еще');
-while (isNaN(a) || a === '' ){
-alert('Введи число!!!');
-a = prompt ('Попробуй еще');}
-if (a != null){
-game(a);}
-}
-if (a>b){
+  let randomNum = getRandomNum(1,100);// случайное число
+    console.log(randomNum);
 
-alert('Загаданное число меньше');
-a= prompt('Попробуй еще');
-while (isNaN(a) || a === '' ){
-alert('Введи число!!!');
-a = prompt ('Попробуй еще');}
-if (a != null){
-game(a);}
-}
-}
-}
-let a = prompt('Угадай число от 1 до 100');
-while (isNaN(a) || a === '' ){
-alert('Введи число!!!');
-a = prompt ('Угадай число от 1 до 100');
 
-}
+    function checkNumber(){
+    
+        
+        const userNumber= prompt('Попробуй угадать число');//вводит пользователь
+    
+    
+          if (isNum(userNumber)){//если  это число????????
+            let repeat=false;
+                      
+            let num=+userNumber;//преобразуем в число
+    
+               if(num>randomNum){
+                   alert('загаданное число меньше');
+                   return checkNumber();//возвращается и запускается заново функция checkNumber
+               }
+               if(num < randomNum){
+                alert('загаданное число больше');
+                return checkNumber();
+               }
+               repeat= confirm('отлично, угадано ');
+    
+               console.log(repeat);
+            }
+                       
+                    else{
+                    if(userNumber !==null){
+                        alert('введите число');
+                        checkNumber()
+                    }
+            alert('пока');
+          }
+                  
+        }
 
-if (a != null){
-game(a);}
+
+    
+     let game=checkNumber();
+
+     game;
